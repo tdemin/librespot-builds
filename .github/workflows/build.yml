@@ -1,0 +1,30 @@
+name: Build Librespot
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  librespot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Nix package manager
+        uses: cachix/install-nix-action@v14
+      - name: Build librespot
+        run: |
+          nix-build
+          mkdir -p build
+          cp -L ./result/* ./build/ 
+      - name: Upload artifacts to GitHub releases
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: true
+          files: './build/*'
+          name: latest
+          tag_name: latest
+          body: ""
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
