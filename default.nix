@@ -36,6 +36,8 @@
     bincache = system: nixpkgs {
         system = architectures."${system}".system;
     };
+    # Cross-compilation is only required on foreign architectures, whereas with
+    # i686 its binaries work just fine.
     crossSystem = system: let
         config = architectures."${system}";
     in if (config.crossCompile == true) then (nixpkgs {
@@ -57,6 +59,7 @@
         withPulseAudio = true;
     };
     binary = system: "${package system}/bin/librespot";
+    # patchelf pass is required to make binaries work on any system, not just with Nix/NixOS
     derive = system: let pkg = package system; in with pkgs; derivation {
         name = "librespot-${pkg.version}-${system}";
         version = pkg.version;
