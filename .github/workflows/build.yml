@@ -17,14 +17,17 @@ jobs:
         run: |
           nix-build
           mkdir -p build
-          cp -L ./result/* ./build/ 
+          cp -L ./result/* ./build/
+      - name: Get version tag
+        id: version
+        run: |
+          echo "::set-output name=version::$(cat ./version.txt)"
       - name: Upload artifacts to GitHub releases
         uses: softprops/action-gh-release@v1
         with:
-          prerelease: true
           files: './build/*'
-          name: latest
-          tag_name: latest
-          body: ""
+          name: v${{ steps.version.outputs.version }}
+          tag_name: v${{ steps.version.outputs.version }}
+          body: "Release Librespot v${{ steps.version.outputs.version }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
