@@ -16,3 +16,6 @@ need to at least install `libpulse0` and `libasound2` in both use scenarios.
 For code residing in this repository, see [LICENSE](LICENSE). Librespot
 itself is covered by its own
 [license](https://raw.githubusercontent.com/librespot-org/librespot/dev/LICENSE).
+
+Unpatched binary builds are provided by the [NixOS](https://nixos.org) project
+and are grabbed from `https://cache.nixos.org`.
