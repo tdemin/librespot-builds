@@ -1,9 +1,9 @@
 {}: let
-    nixpkgsRevision = "fdd348249b84f88ebb528b2015b248419c358848";
+    nixpkgsRevision = "eeff99817d0ed62fa3fc5a05b5be7fbdf0e599ee";
     nixpkgs = import (builtins.fetchTarball {
         name = "nixpkgs-unstable";
         url = "https://github.com/NixOS/nixpkgs/archive/${nixpkgsRevision}.tar.gz";
-        sha256 = sha256:1vjg3z3k0cfwzjwwsf8g17ljbp0zydyhxa4r6i68b84hmnj3k605;
+        sha256 = sha256:0vh04x06pz5f4nn57bha5l1wplwbs688zhlqa5rdarh9vdc4kfm6;
     });
     pkgs = nixpkgs {};
     architectures = {
@@ -54,10 +54,7 @@
             ;
         })];
     }) else (bincache system);
-    package = system: (crossSystem system).callPackage ./librespot.nix {
-        withALSA = true;
-        withPulseAudio = true;
-    };
+    package = system: (crossSystem system).librespot;
     binary = system: "${package system}/bin/librespot";
     # patchelf pass is required to make binaries work on any system, not just with Nix/NixOS
     derive = system: let pkg = package system; in with pkgs; derivation {
