@@ -1,9 +1,10 @@
 {}: let
-    nixpkgsRevision = "eeff99817d0ed62fa3fc5a05b5be7fbdf0e599ee";
+    nixpkgsRevision = "e6badb26fc0d238fda2432c45b7dd4e782eb8200";
+    nixpkgsSha256 = sha256:0vsvrv7qrrxjn0vgvr3rsvlsbd8bnyacnw4c1mac9vzx17yldxbv;
     nixpkgs = import (builtins.fetchTarball {
         name = "nixpkgs-unstable";
         url = "https://github.com/NixOS/nixpkgs/archive/${nixpkgsRevision}.tar.gz";
-        sha256 = sha256:0vh04x06pz5f4nn57bha5l1wplwbs688zhlqa5rdarh9vdc4kfm6;
+        sha256 = nixpkgsSha256;
     });
     pkgs = nixpkgs {};
     architectures = {
