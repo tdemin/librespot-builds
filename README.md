@@ -1,5 +1,8 @@
 # Librespot builds
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/tdemin/librespot-builds?label=latest%20release)
+[![Build Librespot](https://github.com/tdemin/librespot-builds/actions/workflows/build.yml/badge.svg)](https://github.com/tdemin/librespot-builds/actions/workflows/build.yml)
+
 This is a repository hosting fresh builds of
 [Librespot](https://github.com/librespot-org/librespot) for ARM64 (Raspberry
 Pi 3/4), i686, and x86_64 for Linux. See the releases page.
