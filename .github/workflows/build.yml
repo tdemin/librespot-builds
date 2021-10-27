@@ -21,7 +21,7 @@ jobs:
       - name: Get version tag
         id: version
         run: |
-          echo "::set-output name=version::$(cat ./version.txt)"
+          echo "::set-output name=version::$(cat ./build/version.txt)"
       - name: Upload artifacts to GitHub releases
         uses: softprops/action-gh-release@v1
         with:

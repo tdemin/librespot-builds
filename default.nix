@@ -44,5 +44,10 @@
     derivations = builtins.map derive (builtins.attrNames architectures);
 in pkgs.buildEnv {
     name = "librespot-build";
-    paths = derivations;
+    paths = derivations ++ [ (pkgs.writeTextFile {
+        name = "librespot-version.txt";
+        text = "${pkgs.librespot.version}\n";
+        executable = false;
+        destination = "/version.txt";
+    }) ];
 }
